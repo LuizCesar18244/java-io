@@ -8,18 +8,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.developer.java.io.model.ResponseModel;
+
 @CrossOrigin
 @RestController
 @RequestMapping( "/api" )
 public class FileController { 
 	
 	@RequestMapping( value = "/file",method = RequestMethod.POST)
-	public @ResponseBody String teste( @RequestParam("file") MultipartFile file ) 
+	public @ResponseBody ResponseModel teste( @RequestParam("file") MultipartFile file ) 
 	{
-		if( file.isEmpty())
-			System.out.println("Vazio...");
+		if( file.isEmpty( ) )
+			return new ResponseModel(0, "Arquivo Vazio");
 		
-		return "Arquivo enviado...";
+		return new ResponseModel(1, "Arquivo Enviado com sucesso");
 	}
 
 }
